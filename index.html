@@ -121,47 +121,27 @@
             visibility: visible;
             opacity: 1;
         }
-        
-        /* Completion message styling */
+          /* Completion message styling */
         .completion-message {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             padding: 20px;
             border-radius: 12px;
-            margin-top: 2rem;
+            margin: 2rem auto;
             text-align: center;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
             animation: slideIn 0.5s ease-out;
+            max-width: 4xl;
+            width: 100%;
         }
         
         .completion-message h2 {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-        }
-          .completion-message p {
+        }          .completion-message p {
             margin-bottom: 1.5rem;
             opacity: 0.9;
-        }
-        
-        .restart-btn {
-            background-color: white;
-            color: #059669;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            margin: 0 auto;
-            display: block;
-        }
-        
-        .restart-btn:hover {
-            background-color: #f0fdf4;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         @keyframes slideIn {
@@ -177,12 +157,12 @@
         
         .hidden {
             display: none !important;
-        }
-    </style>
+        }    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-100 min-h-screen p-4">
+    <div class="flex flex-col items-center min-h-screen">
 
-    <div class="w-full max-w-4xl bg-white rounded-lg shadow-2xl">
+        <div class="w-full max-w-4xl bg-white rounded-lg shadow-2xl">
         <!-- Toolbar -->
         <div class="p-2 bg-gray-50 border-b border-gray-200 rounded-t-lg sticky top-0 z-10">
             <div class="flex flex-wrap items-center gap-2">
@@ -216,16 +196,17 @@
             <div id="editor" contenteditable="true" oninput="checkTasks()" onkeyup="checkTasks()" onmouseup="checkTasks()" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)" ondrop="handleDrop(event)">
                 <!-- Content will be injected by JavaScript -->
             </div>        </div>
-    </div>
-
-    <!-- Completion Message -->
-    <div id="completionMessage" class="completion-message" style="display: none;">
-        <div class="completion-content">
-            <h2>🎉 Congratulations! 🎉</h2>
-            <p>You've successfully completed all the document formatting tasks!</p>
-            <p style="opacity: 0.8; font-style: italic; margin-bottom: 2rem;">Click "Complete & Continue" on the host platform to proceed.</p>
-            <button class="restart-btn" onclick="restartTutorial()">Restart Tutorial</button>
         </div>
+
+        <!-- Completion Message -->
+        <div class="w-full max-w-4xl p-4">
+            <div id="completionMessage" class="completion-message" style="display: none;">
+                <h2>🎉 Congratulations! 🎉</h2>
+                <p>You've successfully completed all the document formatting tasks!</p>
+                <p style="opacity: 0.8; font-style: italic; margin-bottom: 0;">Click "Complete & Continue" on the host platform to proceed.</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -433,17 +414,9 @@
                 </div>
             `;
             restrictSelection();            setTimeout(checkTasks, 100); 
-        };
-
-        // Show completion message when all tasks are done
+        };        // Show completion message when all tasks are done
         function showCompletionMessage() {
-            document.getElementById('completionMessage').style.display = 'flex';
-        }
-
-        // Restart tutorial function
-        function restartTutorial() {
-            document.getElementById('completionMessage').style.display = 'none';
-            resetTutorial();
+            document.getElementById('completionMessage').style.display = 'block';
         }
     </script>
 </body>
